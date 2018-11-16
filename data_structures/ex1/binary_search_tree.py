@@ -7,8 +7,27 @@ class BinarySearchTree:
   def depth_first_for_each(self, cb):
     pass    
 
+  #Doing Breadth First for MVP
   def breadth_first_for_each(self, cb):
-    pass
+    #easy way to make a queue, thanks python
+    queue = []
+    #Adding stuff to the queue
+    queue.append(self)
+    #Go through the queue and use the cb function
+    while len(queue) > 0:
+      #grab first item in queue
+      i = queue[0]
+      #call cb
+      cb(i.value)
+      #take out the first item
+      queue.pop(0)
+      #check left node, if existing add it to the queue
+      if i.left is not None:
+        queue.append(i.left)
+      #check right node, if existing add it to the queue
+      if i.right is not None:
+        queue.append(i.right)
+
 
   def insert(self, value):
     new_tree = BinarySearchTree(value)
